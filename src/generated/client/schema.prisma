@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id_usuario String   @id @default(cuid())
+  correo     String   @unique
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  estado     Boolean  @default(true)
+
+  facturas      Factura[]
+  detalleEnvios DetalleEnvio[]
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("usuarios")
+}
+
+model CategoriaGasto {
+  id_categoria_gasto String  @id @default(cuid())
+  nombre             String  @unique
+  description        String?
+
+  facturas Factura[]
+
+  @@map("categoria_gasto")
+}
+
+model TipoDocumento {
+  id_tipo_documento String @id @default(cuid())
+  nombre            String @unique // Factura / Recibo / Otros
+
+  facturas Factura[]
+
+  @@map("tipo_documento")
+}
+
+model Factura {
+  id_factura String   @id @default(cuid())
+  fecha      DateTime
+  proveedor  String
+  monto      Decimal  @db.Decimal(12, 2)
+  imagen     String?
+  id_empresa String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  id_tipo_gasto        String
+  identificadorUsuario String
+  id_tipo_documento    String?
+
+  categoriaGasto CategoriaGasto @relation(fields: [id_tipo_gasto], references: [id_categoria_gasto])
+  usuario        Usuario        @relation(fields: [identificadorUsuario], references: [id_usuario])
+  tipoDocumento  TipoDocumento? @relation(fields: [id_tipo_documento], references: [id_tipo_documento])
+
+  facturasEnviadas FacturaEnviada[]
+
+  @@map("facturas")
+}
+
+model DetalleEnvio {
+  id_detalle_envio String   @id @default(cuid())
+  timestamp        DateTime @default(now())
+  contador         Int      @default(0)
+  medio_envio      String // whatsapp / email / otro
+  estado           String   @default("pendiente")
+
+  id_usuario String
+  usuario    Usuario @relation(fields: [id_usuario], references: [id_usuario])
+
+  facturasEnviadas FacturaEnviada[]
+
+  @@map("detalle_envio")
+}
+
+model FacturaEnviada {
+  id               String @id @default(cuid())
+  id_factura       String
+  id_detalle_envio String
+
+  factura      Factura      @relation(fields: [id_factura], references: [id_factura])
+  detalleEnvio DetalleEnvio @relation(fields: [id_detalle_envio], references: [id_detalle_envio])
+
+  @@unique([id_factura, id_detalle_envio])
+  @@map("facturas_enviadas")
+}
+
+// NextAuth required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user Usuario @relation(fields: [userId], references: [id_usuario], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user Usuario @relation(fields: [userId], references: [id_usuario], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
