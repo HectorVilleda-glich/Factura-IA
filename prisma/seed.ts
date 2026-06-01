@@ -1,9 +1,13 @@
+import "dotenv/config";
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/client";
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  // Seed categorías de gasto
   const categorias = [
     { nombre: "Alimentación", description: "Gastos en comida y bebidas" },
     { nombre: "Transporte", description: "Gastos en movilización y transporte" },
@@ -23,12 +27,7 @@ async function main() {
     });
   }
 
-  // Seed tipos de documento
-  const tipos = [
-    { nombre: "Factura" },
-    { nombre: "Recibo" },
-    { nombre: "Otros" },
-  ];
+  const tipos = [{ nombre: "Factura" }, { nombre: "Recibo" }, { nombre: "Otros" }];
 
   for (const tipo of tipos) {
     await prisma.tipoDocumento.upsert({
@@ -48,4 +47,5 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
+    await pool.end();
   });
