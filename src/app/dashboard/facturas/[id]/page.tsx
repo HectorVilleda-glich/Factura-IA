@@ -73,7 +73,6 @@ export default async function FacturaDetallePage({ params }: PageProps) {
         <div className="mt-8 bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-lg font-bold text-gray-900 mb-6">Editar factura</h2>
           <FacturaForm
-            userId={auth.usuario.id_usuario}
             categorias={categorias}
             tipos={tipos}
             mode="edit"

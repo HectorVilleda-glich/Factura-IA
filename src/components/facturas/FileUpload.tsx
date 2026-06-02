@@ -1,23 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
-import {
-  buildStoragePath,
-  getFacturasBucket,
-} from "@/lib/supabase/storage";
 
 const ACCEPT = "image/jpeg,image/png,image/webp,application/pdf";
 const MAX_SIZE_MB = 10;
 
 type FileUploadProps = {
-  userId: string;
   value?: string | null;
   onChange: (url: string | null) => void;
   disabled?: boolean;
 };
 
-export function FileUpload({ userId, value, onChange, disabled }: FileUploadProps) {
+export function FileUpload({ value, onChange, disabled }: FileUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
@@ -32,23 +26,24 @@ export function FileUpload({ userId, value, onChange, disabled }: FileUploadProp
     }
 
     setUploading(true);
-    const supabase = createSupabaseBrowserClient();
-    const path = buildStoragePath(userId, file.name);
-    const bucket = getFacturasBucket();
+    const formData = new FormData();
+    formData.append("file", file);
 
-    const { error: uploadError } = await supabase.storage
-      .from(bucket)
-      .upload(path, file, { upsert: false, contentType: file.type });
+    const res = await fetch("/api/facturas/upload", {
+      method: "POST",
+      body: formData,
+    });
 
+    const data = await res.json();
     setUploading(false);
 
-    if (uploadError) {
-      setError(uploadError.message || "Error al subir el archivo");
+    if (!res.ok) {
+      setError(data.error || "Error al subir el archivo");
       return;
     }
 
-    const { data } = supabase.storage.from(bucket).getPublicUrl(path);
-    onChange(data.publicUrl);
+    onChange(data.url);
+    e.target.value = "";
   }
 
   function clearFile() {
@@ -67,9 +62,7 @@ export function FileUpload({ userId, value, onChange, disabled }: FileUploadProp
       {value ? (
         <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-sm font-medium text-gray-800 truncate">
-              Archivo adjunto
-            </p>
+            <p className="text-sm font-medium text-gray-800 truncate">Archivo adjunto</p>
             <a
               href={value}
               target="_blank"

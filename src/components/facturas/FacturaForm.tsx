@@ -20,7 +20,6 @@ export type FacturaFormData = {
 };
 
 type FacturaFormProps = {
-  userId: string;
   categorias: Categoria[];
   tipos: TipoDocumento[];
   initial?: FacturaFormData;
@@ -36,7 +35,6 @@ function toDateInputValue(isoOrDate: string) {
 }
 
 export function FacturaForm({
-  userId,
   categorias,
   tipos,
   initial,
@@ -95,7 +93,7 @@ export function FacturaForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <FileUpload userId={userId} value={imagen} onChange={setImagen} disabled={loading} />
+      <FileUpload value={imagen} onChange={setImagen} disabled={loading} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

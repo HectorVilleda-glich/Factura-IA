@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthenticatedUsuario } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import {
   extractStoragePathFromUrl,
   getFacturasBucket,
@@ -86,7 +86,7 @@ export async function DELETE(_req: NextRequest, context: RouteContext) {
   if (existing.imagen) {
     const storagePath = extractStoragePathFromUrl(existing.imagen);
     if (storagePath) {
-      const supabase = await createSupabaseServerClient();
+      const supabase = createSupabaseAdminClient();
       await supabase.storage.from(getFacturasBucket()).remove([storagePath]);
     }
   }

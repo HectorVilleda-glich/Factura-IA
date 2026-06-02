@@ -26,12 +26,7 @@ export default async function NuevaFacturaPage() {
         <p className="mt-1 text-gray-600">Registro manual con archivo adjunto opcional</p>
 
         <div className="mt-8 bg-white rounded-2xl shadow-xl p-8">
-          <FacturaForm
-            userId={auth.usuario.id_usuario}
-            categorias={categorias}
-            tipos={tipos}
-            mode="create"
-          />
+          <FacturaForm categorias={categorias} tipos={tipos} mode="create" />
         </div>
       </div>
     </div>
