@@ -13,6 +13,7 @@ type Factura = {
   monto: string | number;
   imagen: string | null;
   id_empresa: string | null;
+  es_ingreso: boolean;
   categoriaGasto: { nombre: string };
   tipoDocumento: { nombre: string } | null;
 };
@@ -135,8 +136,12 @@ export function FacturaList({ categorias }: FacturaListProps) {
                 href={`/dashboard/facturas/${f.id_factura}`}
                 className="flex items-center gap-4 py-4 px-2 -mx-2 rounded-xl hover:bg-indigo-50/50 transition group"
               >
-                <div className="h-11 w-11 rounded-xl bg-indigo-600/10 text-indigo-700 flex items-center justify-center text-sm font-bold shrink-0">
-                  {f.imagen ? "📎" : "L"}
+                <div className={`h-11 w-11 rounded-xl flex items-center justify-center text-sm font-bold shrink-0 ${
+                  f.es_ingreso
+                    ? "bg-emerald-600/10 text-emerald-700"
+                    : "bg-rose-600/10 text-rose-700"
+                }`}>
+                  {f.es_ingreso ? "I" : "G"}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="font-semibold text-gray-900 truncate group-hover:text-indigo-700">

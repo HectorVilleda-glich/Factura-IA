@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { fecha, proveedor, id_tipo_gasto, monto, imagen, id_empresa, id_tipo_documento } =
+    const { fecha, proveedor, id_tipo_gasto, monto, imagen, id_empresa, id_tipo_documento, es_ingreso } =
       body;
 
     if (!fecha || !proveedor || !id_tipo_gasto || monto === undefined) {
@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
         proveedor,
         id_tipo_gasto,
         monto,
+        es_ingreso: es_ingreso ?? false,
         imagen: imagen || null,
         id_empresa: id_empresa || null,
         id_tipo_documento: id_tipo_documento || null,

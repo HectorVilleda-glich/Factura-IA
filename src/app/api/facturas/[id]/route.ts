@@ -43,7 +43,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 
   try {
     const body = await req.json();
-    const { fecha, proveedor, id_tipo_gasto, monto, imagen, id_empresa, id_tipo_documento } =
+    const { fecha, proveedor, id_tipo_gasto, monto, imagen, id_empresa, id_tipo_documento, es_ingreso } =
       body;
 
     const factura = await prisma.factura.update({
@@ -53,6 +53,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
         ...(proveedor !== undefined && { proveedor }),
         ...(id_tipo_gasto !== undefined && { id_tipo_gasto }),
         ...(monto !== undefined && { monto }),
+        ...(es_ingreso !== undefined && { es_ingreso }),
         ...(imagen !== undefined && { imagen }),
         ...(id_empresa !== undefined && { id_empresa }),
         ...(id_tipo_documento !== undefined && {

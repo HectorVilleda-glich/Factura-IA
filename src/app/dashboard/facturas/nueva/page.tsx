@@ -22,8 +22,8 @@ export default async function NuevaFacturaPage() {
         >
           ← Volver al panel
         </Link>
-        <h1 className="mt-4 text-3xl font-bold text-indigo-900">Nueva factura</h1>
-        <p className="mt-1 text-gray-600">Registro manual con archivo adjunto opcional</p>
+        <h1 className="mt-4 text-3xl font-bold text-black">Nueva factura</h1>
+        <p className="mt-1 text-black">Sube una imagen para reconocer automáticamente los datos con IA o ingrésalos manualmente</p>
 
         <div className="mt-8 bg-white rounded-2xl shadow-xl p-8">
           <FacturaForm categorias={categorias} tipos={tipos} mode="create" />

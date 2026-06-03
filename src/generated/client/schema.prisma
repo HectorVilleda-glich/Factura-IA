@@ -52,6 +52,7 @@ model Factura {
   monto      Decimal  @db.Decimal(12, 2)
   imagen     String?
   id_empresa String?
+  es_ingreso Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 

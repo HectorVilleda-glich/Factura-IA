@@ -147,6 +147,7 @@ exports.Prisma.FacturaScalarFieldEnum = {
   monto: 'monto',
   imagen: 'imagen',
   id_empresa: 'id_empresa',
+  es_ingreso: 'es_ingreso',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   id_tipo_gasto: 'id_tipo_gasto',

@@ -39,8 +39,8 @@ export default async function FacturaDetallePage({ params }: PageProps) {
 
         <div className="mt-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-indigo-900">{factura.proveedor}</h1>
-            <p className="mt-1 text-gray-600">
+            <h1 className="text-3xl font-bold text-black">{factura.proveedor}</h1>
+            <p className="mt-1 text-black">
               {formatDateES(factura.fecha)} · {formatCurrencyHNL(Number(factura.monto))}
             </p>
           </div>
@@ -49,7 +49,7 @@ export default async function FacturaDetallePage({ params }: PageProps) {
 
         {factura.imagen && (
           <div className="mt-6 bg-white rounded-2xl shadow p-4">
-            <p className="text-sm font-medium text-gray-700 mb-3">Archivo adjunto</p>
+            <p className="text-sm font-medium text-black mb-3">Archivo adjunto</p>
             {isPdf ? (
               <a
                 href={factura.imagen}
@@ -85,6 +85,7 @@ export default async function FacturaDetallePage({ params }: PageProps) {
               id_tipo_documento: factura.id_tipo_documento ?? "",
               id_empresa: factura.id_empresa ?? "",
               imagen: factura.imagen,
+              es_ingreso: factura.es_ingreso,
             }}
           />
         </div>

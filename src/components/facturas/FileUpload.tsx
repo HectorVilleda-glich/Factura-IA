@@ -55,14 +55,14 @@ export function FileUpload({ value, onChange, disabled }: FileUploadProps) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-black">
         Archivo (imagen o PDF)
       </label>
 
       {value ? (
         <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-sm font-medium text-gray-800 truncate">Archivo adjunto</p>
+            <p className="text-sm font-medium text-black truncate">Archivo adjunto</p>
             <a
               href={value}
               target="_blank"
@@ -90,11 +90,11 @@ export function FileUpload({ value, onChange, disabled }: FileUploadProps) {
             disabled || uploading ? "opacity-50 pointer-events-none" : ""
           }`}
         >
-          <span className="text-2xl text-gray-400 mb-2">↑</span>
-          <span className="text-sm font-medium text-gray-600">
+          <span className="text-2xl text-gray-500 mb-2">↑</span>
+          <span className="text-sm font-medium text-black">
             {uploading ? "Subiendo..." : "Haz clic para subir imagen o PDF"}
           </span>
-          <span className="text-xs text-gray-400 mt-1">Máx. {MAX_SIZE_MB} MB</span>
+          <span className="text-xs text-gray-500 mt-1">Máx. {MAX_SIZE_MB} MB</span>
           <input
             type="file"
             accept={ACCEPT}

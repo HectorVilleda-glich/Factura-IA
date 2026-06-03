@@ -5059,6 +5059,7 @@ export namespace Prisma {
     monto: Decimal | null
     imagen: string | null
     id_empresa: string | null
+    es_ingreso: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     id_tipo_gasto: string | null
@@ -5073,6 +5074,7 @@ export namespace Prisma {
     monto: Decimal | null
     imagen: string | null
     id_empresa: string | null
+    es_ingreso: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     id_tipo_gasto: string | null
@@ -5087,6 +5089,7 @@ export namespace Prisma {
     monto: number
     imagen: number
     id_empresa: number
+    es_ingreso: number
     createdAt: number
     updatedAt: number
     id_tipo_gasto: number
@@ -5111,6 +5114,7 @@ export namespace Prisma {
     monto?: true
     imagen?: true
     id_empresa?: true
+    es_ingreso?: true
     createdAt?: true
     updatedAt?: true
     id_tipo_gasto?: true
@@ -5125,6 +5129,7 @@ export namespace Prisma {
     monto?: true
     imagen?: true
     id_empresa?: true
+    es_ingreso?: true
     createdAt?: true
     updatedAt?: true
     id_tipo_gasto?: true
@@ -5139,6 +5144,7 @@ export namespace Prisma {
     monto?: true
     imagen?: true
     id_empresa?: true
+    es_ingreso?: true
     createdAt?: true
     updatedAt?: true
     id_tipo_gasto?: true
@@ -5240,6 +5246,7 @@ export namespace Prisma {
     monto: Decimal
     imagen: string | null
     id_empresa: string | null
+    es_ingreso: boolean
     createdAt: Date
     updatedAt: Date
     id_tipo_gasto: string
@@ -5273,6 +5280,7 @@ export namespace Prisma {
     monto?: boolean
     imagen?: boolean
     id_empresa?: boolean
+    es_ingreso?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     id_tipo_gasto?: boolean
@@ -5292,6 +5300,7 @@ export namespace Prisma {
     monto?: boolean
     imagen?: boolean
     id_empresa?: boolean
+    es_ingreso?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     id_tipo_gasto?: boolean
@@ -5309,6 +5318,7 @@ export namespace Prisma {
     monto?: boolean
     imagen?: boolean
     id_empresa?: boolean
+    es_ingreso?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     id_tipo_gasto?: boolean
@@ -5326,6 +5336,7 @@ export namespace Prisma {
     monto?: boolean
     imagen?: boolean
     id_empresa?: boolean
+    es_ingreso?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     id_tipo_gasto?: boolean
@@ -5333,7 +5344,7 @@ export namespace Prisma {
     id_tipo_documento?: boolean
   }
 
-  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_factura" | "fecha" | "proveedor" | "monto" | "imagen" | "id_empresa" | "createdAt" | "updatedAt" | "id_tipo_gasto" | "identificadorUsuario" | "id_tipo_documento", ExtArgs["result"]["factura"]>
+  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_factura" | "fecha" | "proveedor" | "monto" | "imagen" | "id_empresa" | "es_ingreso" | "createdAt" | "updatedAt" | "id_tipo_gasto" | "identificadorUsuario" | "id_tipo_documento", ExtArgs["result"]["factura"]>
   export type FacturaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoriaGasto?: boolean | CategoriaGastoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
@@ -5367,6 +5378,7 @@ export namespace Prisma {
       monto: Prisma.Decimal
       imagen: string | null
       id_empresa: string | null
+      es_ingreso: boolean
       createdAt: Date
       updatedAt: Date
       id_tipo_gasto: string
@@ -5805,6 +5817,7 @@ export namespace Prisma {
     readonly monto: FieldRef<"Factura", 'Decimal'>
     readonly imagen: FieldRef<"Factura", 'String'>
     readonly id_empresa: FieldRef<"Factura", 'String'>
+    readonly es_ingreso: FieldRef<"Factura", 'Boolean'>
     readonly createdAt: FieldRef<"Factura", 'DateTime'>
     readonly updatedAt: FieldRef<"Factura", 'DateTime'>
     readonly id_tipo_gasto: FieldRef<"Factura", 'String'>
@@ -11719,6 +11732,7 @@ export namespace Prisma {
     monto: 'monto',
     imagen: 'imagen',
     id_empresa: 'id_empresa',
+    es_ingreso: 'es_ingreso',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     id_tipo_gasto: 'id_tipo_gasto',
@@ -12060,6 +12074,7 @@ export namespace Prisma {
     monto?: DecimalFilter<"Factura"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableFilter<"Factura"> | string | null
     id_empresa?: StringNullableFilter<"Factura"> | string | null
+    es_ingreso?: BoolFilter<"Factura"> | boolean
     createdAt?: DateTimeFilter<"Factura"> | Date | string
     updatedAt?: DateTimeFilter<"Factura"> | Date | string
     id_tipo_gasto?: StringFilter<"Factura"> | string
@@ -12078,6 +12093,7 @@ export namespace Prisma {
     monto?: SortOrder
     imagen?: SortOrderInput | SortOrder
     id_empresa?: SortOrderInput | SortOrder
+    es_ingreso?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     id_tipo_gasto?: SortOrder
@@ -12099,6 +12115,7 @@ export namespace Prisma {
     monto?: DecimalFilter<"Factura"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableFilter<"Factura"> | string | null
     id_empresa?: StringNullableFilter<"Factura"> | string | null
+    es_ingreso?: BoolFilter<"Factura"> | boolean
     createdAt?: DateTimeFilter<"Factura"> | Date | string
     updatedAt?: DateTimeFilter<"Factura"> | Date | string
     id_tipo_gasto?: StringFilter<"Factura"> | string
@@ -12117,6 +12134,7 @@ export namespace Prisma {
     monto?: SortOrder
     imagen?: SortOrderInput | SortOrder
     id_empresa?: SortOrderInput | SortOrder
+    es_ingreso?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     id_tipo_gasto?: SortOrder
@@ -12139,6 +12157,7 @@ export namespace Prisma {
     monto?: DecimalWithAggregatesFilter<"Factura"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     id_empresa?: StringNullableWithAggregatesFilter<"Factura"> | string | null
+    es_ingreso?: BoolWithAggregatesFilter<"Factura"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Factura"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Factura"> | Date | string
     id_tipo_gasto?: StringWithAggregatesFilter<"Factura"> | string
@@ -12617,6 +12636,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriaGasto: CategoriaGastoCreateNestedOneWithoutFacturasInput
@@ -12632,6 +12652,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -12647,6 +12668,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriaGasto?: CategoriaGastoUpdateOneRequiredWithoutFacturasNestedInput
@@ -12662,6 +12684,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -12677,6 +12700,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -12691,6 +12715,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12702,6 +12727,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -13261,6 +13287,7 @@ export namespace Prisma {
     monto?: SortOrder
     imagen?: SortOrder
     id_empresa?: SortOrder
+    es_ingreso?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     id_tipo_gasto?: SortOrder
@@ -13279,6 +13306,7 @@ export namespace Prisma {
     monto?: SortOrder
     imagen?: SortOrder
     id_empresa?: SortOrder
+    es_ingreso?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     id_tipo_gasto?: SortOrder
@@ -13293,6 +13321,7 @@ export namespace Prisma {
     monto?: SortOrder
     imagen?: SortOrder
     id_empresa?: SortOrder
+    es_ingreso?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     id_tipo_gasto?: SortOrder
@@ -14244,6 +14273,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriaGasto: CategoriaGastoCreateNestedOneWithoutFacturasInput
@@ -14258,6 +14288,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -14389,6 +14420,7 @@ export namespace Prisma {
     monto?: DecimalFilter<"Factura"> | Decimal | DecimalJsLike | number | string
     imagen?: StringNullableFilter<"Factura"> | string | null
     id_empresa?: StringNullableFilter<"Factura"> | string | null
+    es_ingreso?: BoolFilter<"Factura"> | boolean
     createdAt?: DateTimeFilter<"Factura"> | Date | string
     updatedAt?: DateTimeFilter<"Factura"> | Date | string
     id_tipo_gasto?: StringFilter<"Factura"> | string
@@ -14491,6 +14523,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutFacturasInput
@@ -14505,6 +14538,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     identificadorUsuario: string
@@ -14545,6 +14579,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriaGasto: CategoriaGastoCreateNestedOneWithoutFacturasInput
@@ -14559,6 +14594,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -14884,6 +14920,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriaGasto: CategoriaGastoCreateNestedOneWithoutFacturasInput
@@ -14898,6 +14935,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -14951,6 +14989,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriaGasto?: CategoriaGastoUpdateOneRequiredWithoutFacturasNestedInput
@@ -14965,6 +15004,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -15136,6 +15176,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -15177,6 +15218,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriaGasto?: CategoriaGastoUpdateOneRequiredWithoutFacturasNestedInput
@@ -15191,6 +15233,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -15205,6 +15248,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -15304,6 +15348,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     identificadorUsuario: string
@@ -15317,6 +15362,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutFacturasNestedInput
@@ -15331,6 +15377,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     identificadorUsuario?: StringFieldUpdateOperationsInput | string
@@ -15345,6 +15392,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     identificadorUsuario?: StringFieldUpdateOperationsInput | string
@@ -15358,6 +15406,7 @@ export namespace Prisma {
     monto: Decimal | DecimalJsLike | number | string
     imagen?: string | null
     id_empresa?: string | null
+    es_ingreso?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     id_tipo_gasto: string
@@ -15371,6 +15420,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriaGasto?: CategoriaGastoUpdateOneRequiredWithoutFacturasNestedInput
@@ -15385,6 +15435,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string
@@ -15399,6 +15450,7 @@ export namespace Prisma {
     monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imagen?: NullableStringFieldUpdateOperationsInput | string | null
     id_empresa?: NullableStringFieldUpdateOperationsInput | string | null
+    es_ingreso?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     id_tipo_gasto?: StringFieldUpdateOperationsInput | string

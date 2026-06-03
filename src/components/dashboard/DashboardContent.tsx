@@ -12,6 +12,7 @@ type Categoria = { id_categoria_gasto: string; nombre: string; description?: str
 type Factura = {
   monto: string | number;
   id_tipo_gasto: string;
+  es_ingreso: boolean;
   categoriaGasto: { nombre: string };
 };
 
@@ -39,14 +40,22 @@ export function DashboardContent({ email, categorias }: DashboardContentProps) {
     void loadStats();
   }, [loadStats]);
 
-  const totalGastos = facturas.reduce((sum, f) => sum + Number(f.monto), 0);
+  const totalIngresos = facturas
+    .filter((f) => f.es_ingreso)
+    .reduce((sum, f) => sum + Number(f.monto), 0);
+  const totalGastos = facturas
+    .filter((f) => !f.es_ingreso)
+    .reduce((sum, f) => sum + Number(f.monto), 0);
+  const balanceNeto = totalIngresos - totalGastos;
   const count = facturas.length;
 
-  const gastosPorCategoria = facturas.reduce<Record<string, number>>((acc, f) => {
-    const name = f.categoriaGasto.nombre;
-    acc[name] = (acc[name] ?? 0) + Number(f.monto);
-    return acc;
-  }, {});
+  const gastosPorCategoria = facturas
+    .filter((f) => !f.es_ingreso)
+    .reduce<Record<string, number>>((acc, f) => {
+      const name = f.categoriaGasto.nombre;
+      acc[name] = (acc[name] ?? 0) + Number(f.monto);
+      return acc;
+    }, {});
 
   const categoriasOrdenadas = Object.entries(gastosPorCategoria).sort((a, b) => b[1] - a[1]);
   const maxGasto = categoriasOrdenadas[0]?.[1] ?? 1;
@@ -84,10 +93,16 @@ export function DashboardContent({ email, categorias }: DashboardContentProps) {
               >
                 + Nueva factura
               </Link>
+              <Link
+                href="/dashboard/reportes"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-black hover:bg-gray-50 transition"
+              >
+                Reportes
+              </Link>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-black hover:bg-gray-50 transition"
               >
                 Cerrar sesión
               </button>
@@ -100,25 +115,25 @@ export function DashboardContent({ email, categorias }: DashboardContentProps) {
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           <div className="rounded-2xl bg-white/80 backdrop-blur border border-black/5 shadow-sm p-5">
             <p className="text-xs font-semibold text-gray-500 tracking-wide">BALANCE NETO</p>
-            <p className="mt-3 text-2xl font-bold text-gray-900">
-              {formatCurrencyHNL(-totalGastos)}
+            <p className={`mt-3 text-2xl font-bold ${balanceNeto >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+              {formatCurrencyHNL(balanceNeto)}
             </p>
-            <p className="mt-1 text-sm text-gray-500">Gastos del mes actual</p>
+            <p className="mt-1 text-sm text-gray-500">Ingresos - Gastos</p>
           </div>
           <div className="rounded-2xl bg-white/80 backdrop-blur border border-black/5 shadow-sm p-5">
-            <p className="text-xs font-semibold text-gray-500 tracking-wide">INGRESOS TOTALES</p>
-            <p className="mt-3 text-2xl font-bold text-gray-900">{formatCurrencyHNL(0)}</p>
-            <p className="mt-1 text-sm text-emerald-600">Próximamente</p>
+            <p className="text-xs font-semibold text-gray-500 tracking-wide">INGRESOS</p>
+            <p className="mt-3 text-2xl font-bold text-emerald-600">{formatCurrencyHNL(totalIngresos)}</p>
+            <p className="mt-1 text-sm text-gray-500">Mes actual</p>
           </div>
           <div className="rounded-2xl bg-white/80 backdrop-blur border border-black/5 shadow-sm p-5">
-            <p className="text-xs font-semibold text-gray-500 tracking-wide">GASTOS TOTALES</p>
-            <p className="mt-3 text-2xl font-bold text-gray-900">
+            <p className="text-xs font-semibold text-gray-500 tracking-wide">GASTOS</p>
+            <p className="mt-3 text-2xl font-bold text-rose-600">
               {formatCurrencyHNL(totalGastos)}
             </p>
-            <p className="mt-1 text-sm text-rose-600">Mes actual</p>
+            <p className="mt-1 text-sm text-gray-500">Mes actual</p>
           </div>
           <div className="rounded-2xl bg-white/80 backdrop-blur border border-black/5 shadow-sm p-5">
-            <p className="text-xs font-semibold text-gray-500 tracking-wide">FACTURAS</p>
+            <p className="text-xs font-semibold text-gray-500 tracking-wide">MOVIMIENTOS</p>
             <p className="mt-3 text-2xl font-bold text-gray-900">{count}</p>
             <p className="mt-1 text-sm text-gray-500">Este mes</p>
           </div>
